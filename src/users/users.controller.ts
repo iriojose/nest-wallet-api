@@ -1,8 +1,7 @@
 import { Controller, Get, Post, Body, UsePipes } from '@nestjs/common';
 import { Prisma, User } from '@prisma/client';
 import { UsersService } from './users.service';
-import { createUserSchema } from 'src/validations/schemas/users';
-import { ZodValidationPipe } from 'src/validations/validation.pipe';
+import { createUserValidation, userDocumentAndPhoneValidation, UserDocumentAndPhone } from 'src/validations/schemas/users';
 
 @Controller('users')
 export class UsersController {
@@ -12,8 +11,14 @@ export class UsersController {
     async getUsers(): Promise<User[]>{
         return await this.usersService.getUsers()
     }
-    
-    @UsePipes(new ZodValidationPipe(createUserSchema))
+
+    @UsePipes(userDocumentAndPhoneValidation)
+    @Post('checkBalance')
+    async checkBalance(@Body() data: UserDocumentAndPhone): Promise<number> {
+        return await this.usersService.checkBalance(data)
+    }
+
+    @UsePipes(createUserValidation)
     @Post('create')
     async createUser(@Body() data: Prisma.UserCreateInput): Promise<User> {
         return await this.usersService.createUser(data)
