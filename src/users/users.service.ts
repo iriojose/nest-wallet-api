@@ -1,11 +1,13 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { UsersRepository } from './users.repository';
+import { UsersRepository } from '../repository/users.repository';
 import { Prisma, User } from '@prisma/client';
 import { AddBalance, UserDocumentAndPhone } from 'src/validations/schemas/users';
 
 @Injectable()
 export class UsersService {
-    constructor(private usersRepository: UsersRepository){}
+    constructor(
+        private usersRepository: UsersRepository,
+    ){}
 
     async getUsers(): Promise<User[]>{
         return this.usersRepository.getUsers()
