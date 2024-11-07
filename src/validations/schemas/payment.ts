@@ -4,11 +4,11 @@ import { ZodValidationPipe } from '../validation.pipe';
 export const paySchema = z.object({
     email: z
         .string()
-        .email("El email debe ser una dirección válida"),
+        .email("The email must be a valid address"),
     amount: z
         .number() 
-        .positive("El balance debe ser un número positivo") 
-        .min(0.01, "El balance debe ser mayor a 0"),
+        .positive("The balance must be a positive number") 
+        .min(0.01, "The balance must be greater than 0"),
 })
 
 export const confirmPaySchema = z.object({

@@ -5,48 +5,48 @@ import { ZodValidationPipe } from '../validation.pipe';
 export const createUserSchema = z.object({
     document: z
         .string()
-        .min(6, "El documento debe tener al menos 6 caracteres")
-        .max(20, "El documento no puede exceder los 20 caracteres"),
+        .min(6, "The document must be at least 6 characters")
+        .max(20, "The document cannot exceed 20 characters"),
         
     firstName: z
         .string()
-        .min(2, "El nombre debe tener al menos 2 caracteres")
-        .max(50, "El nombre no puede exceder los 50 caracteres"),
+        .min(2, "The name must be at least 2 characters")
+        .max(50, "The name cannot exceed 50 characters"),
         
     lastName: z
         .string()
-        .min(2, "El apellido debe tener al menos 2 caracteres")
-        .max(50, "El apellido no puede exceder los 50 caracteres"),
+        .min(2, "Last name must be at least 2 characters")
+        .max(50, "The last name cannot exceed 50 characters"),
         
     email: z
         .string()
-        .email("El email debe ser una dirección válida"),
+        .email("The email must be a valid address"),
         
     phone: z
         .string()
-        .min(7, "El teléfono debe tener al menos 7 caracteres")
-        .max(15, "El teléfono no puede exceder los 15 caracteres")
-        .regex(/^\+?[0-9\s-]*$/, "El teléfono solo puede contener números, espacios y guiones"),
+        .min(7, "The phone number must be at least 7 characters")
+        .max(15, "The phone cannot exceed 15 characters")
+        .regex(/^\+?[0-9\s-]*$/, "Phone can only contain numbers, spaces and hyphens"),
 });
 
 export const userDocumentAndPhoneSchema = z.object({
     document: z
         .string()
-        .min(6, "El documento debe tener al menos 6 caracteres")
-        .max(20, "El documento no puede exceder los 20 caracteres"),
+        .min(6, "The document must be at least 6 characters")
+        .max(20, "The document cannot exceed 20 characters"),
 
     phone: z
         .string()
-        .min(7, "El teléfono debe tener al menos 7 caracteres")
-        .max(15, "El teléfono no puede exceder los 15 caracteres")
-        .regex(/^\+?[0-9\s-]*$/, "El teléfono solo puede contener números, espacios y guiones"),
+        .min(7, "The phone number must be at least 7 characters")
+        .max(15, "The phone cannot exceed 15 characters")
+        .regex(/^\+?[0-9\s-]*$/, "Phone can only contain numbers, spaces and hyphens"),
 })
 
 export const addBalanceShema = userDocumentAndPhoneSchema.extend({
     balance: z
         .number() 
-        .positive("El balance debe ser un número positivo") 
-        .min(0.01, "El balance debe ser mayor a 0"),
+        .positive("The balance must be a positive number") 
+        .min(0.01, "The balance must be greater than 0"),
 })
 
 //types
