@@ -4,6 +4,7 @@ import { PaymentRepository } from 'src/repository/payment.repository';
 import { SessionRepository } from 'src/repository/session.repository';
 import { Pay, ConfirmPay } from 'src/validations/schemas/payment';
 import { PaymentStatus } from '@prisma/client';
+import { MailService } from 'src/lib/main.service';
 
 @Injectable()
 export class PaymentService {
@@ -11,7 +12,8 @@ export class PaymentService {
     constructor(
         private usersRepository: UsersRepository,
         private paymentRepository: PaymentRepository,
-        private sessionRepository: SessionRepository
+        private sessionRepository: SessionRepository,
+        private mailService: MailService
     ) {}
 
     async pay(data: Pay) {
@@ -23,6 +25,8 @@ export class PaymentService {
 
         const payment = await this.paymentRepository.createPayment({ amount: data.amount, token, userId: user.id})
         const session = await this.sessionRepository.createSession({ token, paymentId: payment.id, userId: user.id })
+
+        await this.mailService.sendMail(data.email, 'Token validation', token);
 
         //envio el token solo para probar en postman, debe solo leerse desde el email
         return { sessionId: session.id, token, message: "the token was sent to the email"};
