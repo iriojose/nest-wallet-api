@@ -1,7 +1,7 @@
 import { Test } from '@nestjs/testing';
 import { NotFoundException } from '@nestjs/common';
-import { UsersController } from '../../users/users.controller';
-import { UsersService } from '../../users/users.service';
+import { UsersController } from '../../modules/users/users.controller';
+import { UsersService } from '../../modules/users/users.service';
 import * as data from "./data.json" 
 
 describe("Users Controller", () => {

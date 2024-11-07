@@ -1,6 +1,6 @@
 import { Controller, Post, Body, UsePipes} from '@nestjs/common';
 import { PaymentService } from './payment.service';
-import { Pay, payValidation, ConfirmPay, confirmPayValidation } from '../validations/schemas/payment';
+import { Pay, payValidation, ConfirmPay, confirmPayValidation } from '../../validations/schemas/payment';
 
 @Controller('payment')
 export class PaymentController {

@@ -1,7 +1,7 @@
 import { Test } from '@nestjs/testing';
 import { NotFoundException, BadRequestException } from '@nestjs/common';
-import { PaymentController } from '../../payment/payment.controller';
-import { PaymentService } from '../../payment/payment.service';
+import { PaymentController } from '../../modules/payment/payment.controller';
+import { PaymentService } from '../../modules/payment/payment.service';
 import * as data from "./data.json" 
 
 describe("Payment Controller", () => {
