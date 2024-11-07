@@ -6,6 +6,16 @@ import { PrismaService } from 'src/lib/prisma.service';
 export class SessionRepository {
     constructor(private prisma: PrismaService){}
 
+    async getSession(id: string) {
+        return await this.prisma.session.findFirst({
+            where: { id },
+            include: { 
+                payment: true,
+                user: true
+            }
+        })
+    }
+
     async createSession({ token, userId, paymentId }: { token: string, userId: string, paymentId: string}) {
         return await this.prisma.session.create({
             data: {

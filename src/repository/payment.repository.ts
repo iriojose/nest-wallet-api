@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Prisma, Payment } from '@prisma/client';
+import { Prisma, Payment, PaymentStatus } from '@prisma/client';
 import { PrismaService } from 'src/lib/prisma.service';
 
 
@@ -12,6 +12,13 @@ export class PaymentRepository {
             where: { 
                 user: { id }
             }
+        })
+    }
+
+    async updatePaymentConfirm(data: Prisma.PaymentUpdateInput) {
+        return await this.prisma.payment.update({ 
+            data,
+            where: { id: data.id as string}
         })
     }
 

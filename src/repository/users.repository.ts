@@ -7,8 +7,10 @@ import { UserDocumentAndPhone } from 'src/validations/schemas/users';
 export class UsersRepository {
     constructor(private prisma: PrismaService){}
 
-    async getUsers(): Promise<User[]> {
-        return await this.prisma.user.findMany()
+    async getUsers(): Promise<Prisma.UserGetPayload<{include: { payments: true }}>[]> {
+        return await this.prisma.user.findMany({
+            include: { payments: true }
+        })
     }
 
     async getUserByEmail(email: string): Promise<User | null> {
@@ -26,13 +28,13 @@ export class UsersRepository {
         })
     }
 
-    async updateBalance(balance: number, userId: string): Promise<User>{
+    async updateUser(data: Prisma.UserUpdateInput) {
         return await this.prisma.user.update({
-            where: { id: userId },
-            data :{ balance }
+            data,
+            where: { id: data.id as string}
         })
     }
-
+    
     async createUser(data: Prisma.UserCreateInput): Promise<User> {
         return await this.prisma.user.create({ data })
     }
