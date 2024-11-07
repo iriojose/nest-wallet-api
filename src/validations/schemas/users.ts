@@ -42,9 +42,18 @@ export const userDocumentAndPhoneSchema = z.object({
         .regex(/^\+?[0-9\s-]*$/, "El teléfono solo puede contener números, espacios y guiones"),
 })
 
+export const addBalanceShema = userDocumentAndPhoneSchema.extend({
+    balance: z
+        .number() 
+        .positive("El balance debe ser un número positivo") 
+        .min(0.01, "El balance debe ser mayor a 0"),
+})
+
 //types
 export type UserDocumentAndPhone = z.TypeOf<typeof userDocumentAndPhoneSchema>
+export type AddBalance = z.TypeOf<typeof addBalanceShema>
 
 //validations pipes
-export const userDocumentAndPhoneValidation = new ZodValidationPipe(userDocumentAndPhoneSchema)
 export const createUserValidation = new ZodValidationPipe(createUserSchema)
+export const userDocumentAndPhoneValidation = new ZodValidationPipe(userDocumentAndPhoneSchema)
+export const addBalanceValidations = new ZodValidationPipe(addBalanceShema)

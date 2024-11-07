@@ -20,6 +20,13 @@ export class UsersRepository {
         })
     }
 
+    async updateBalance(balance: number, userId: string): Promise<User>{
+        return await this.prisma.user.update({
+            where: { id: userId },
+            data :{ balance }
+        })
+    }
+
     async createUser(data: Prisma.UserCreateInput): Promise<User> {
         return await this.prisma.user.create({ data })
     }
