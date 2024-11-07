@@ -4,6 +4,7 @@ import { PrismaService } from './lib/prisma.service';
 import { PaymentModule } from './payment/payment.module';
 import { ConfigModule } from '@nestjs/config';
 import { deploymentValidationSchema } from './validations/schemas/deployment';
+import { AppController } from './app.controller';
 
 @Module({
     imports: [
@@ -20,5 +21,6 @@ import { deploymentValidationSchema } from './validations/schemas/deployment';
     	UsersModule, PaymentModule
     ],
     providers: [PrismaService],
+	controllers: [AppController]
 })
 export class AppModule {}
