@@ -8,18 +8,18 @@ export class UsersController {
     constructor(private usersService: UsersService){}
 
     @Get('/')
-    async getUsers(): Promise<User[]>{
+    async getUsers(): Promise<Prisma.UserGetPayload<{include: { payments: true }}>[]>{
         return await this.usersService.getUsers()
     }
 
     @UsePipes(userDocumentAndPhoneValidation)
-    @Post('checkBalance')
+    @Post('check-Balance')
     async checkBalance(@Body() data: UserDocumentAndPhone): Promise<number> {
         return await this.usersService.checkBalance(data)
     }
 
     @UsePipes(addBalanceValidations)
-    @Post('addBalance')
+    @Post('add-balance')
     async addBalance(@Body() data: AddBalance): Promise<number> {
         return await this.usersService.addBalance(data)
     }

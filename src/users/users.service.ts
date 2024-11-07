@@ -9,7 +9,7 @@ export class UsersService {
         private usersRepository: UsersRepository,
     ){}
 
-    async getUsers(): Promise<User[]>{
+    async getUsers(): Promise<Promise<Prisma.UserGetPayload<{include: { payments: true }}>[]>>{
         return this.usersRepository.getUsers()
     }
 
@@ -24,7 +24,11 @@ export class UsersService {
         const user = await this.usersRepository.getUserByDocumentAndPhone(data)
         if(!user) throw new NotFoundException("User not found")
 
-        const updateUser = await this.usersRepository.updateBalance(data.balance, user.id)
+        const newBalance = (user.balance + data.balance)
+        const updateUser = await this.usersRepository.updateUser({
+            balance: newBalance,
+            id: user.id
+        })
         return updateUser.balance
     }
 

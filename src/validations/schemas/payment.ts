@@ -11,7 +11,15 @@ export const paySchema = z.object({
         .min(0.01, "El balance debe ser mayor a 0"),
 })
 
-export type Pay = z.TypeOf<typeof paySchema>
+export const confirmPaySchema = z.object({
+    sessionId: z
+        .string(),
+    token: z
+        .string()
+})
 
+export type Pay = z.TypeOf<typeof paySchema>
+export type ConfirmPay = z.TypeOf<typeof confirmPaySchema>
 
 export const payValidation = new ZodValidationPipe(paySchema)
+export const confirmPayValidation = new ZodValidationPipe(confirmPaySchema)
