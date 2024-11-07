@@ -1,0 +1,68 @@
+
+{
+    "bodys": {
+        "createUser": {
+            "document": "123456",
+            "firstName": "hola",
+            "lastName": "gmail",
+            "email": "hola@gmail.com",
+            "phone": "04248918821"
+        },
+        "addBalance": {
+            "document": "123456",
+            "phone": "04248918821",
+            "balance": 12
+        },
+        "checkBalance": {   
+            "document": "123456",
+            "phone": "04248918821"
+        }
+    },
+    "createUser": {
+        "id": "944f1891-d8b8-476e-99fd-82fed036a430",
+        "document": "123456",
+        "firstName": "hola",
+        "lastName": "gmail",
+        "email": "hola@gmail.com",
+        "phone": "04248918821",
+        "balance": 0,
+        "createdAt": "2024-11-07T02:20:28.533Z",
+        "updatedAt": "2024-11-07T03:21:27.245Z"
+    },
+    "getUsers":[
+        {
+            "id": "944f1891-d8b8-476e-99fd-82fed036a430",
+            "document": "123456",
+            "firstName": "hola",
+            "lastName": "gmail",
+            "email": "hola@gmail.com",
+            "phone": "04248918821",
+            "balance": 10,
+            "createdAt": "2024-11-07T02:20:28.533Z",
+            "updatedAt": "2024-11-07T03:21:27.245Z",
+            "payments": []
+        },
+        {
+            "id": "d1b6f6cb-ff2e-4308-9e0d-c1c79bbc12f3",
+            "document": "654321",
+            "firstName": "test",
+            "lastName": "gmail",
+            "email": "test@gmail.com",
+            "phone": "04248918822",
+            "balance": 32,
+            "createdAt": "2024-11-07T01:56:25.041Z",
+            "updatedAt": "2024-11-07T18:43:24.708Z",
+            "payments": [
+                {
+                    "id": "a0650e07-407f-48cf-ad03-d7112170d51b",
+                    "amount": 0,
+                    "token": "698949",
+                    "sessionId": null,
+                    "userId": "d1b6f6cb-ff2e-4308-9e0d-c1c79bbc12f3",
+                    "status": "PENDING",
+                    "createdAt": "2024-11-07T04:41:30.118Z"
+                }
+            ]
+        }
+    ]
+} 

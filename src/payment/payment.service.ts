@@ -1,10 +1,10 @@
 import { Injectable, BadRequestException, NotFoundException } from '@nestjs/common';
-import { UsersRepository } from 'src/repository/users.repository';
-import { PaymentRepository } from 'src/repository/payment.repository';
-import { SessionRepository } from 'src/repository/session.repository';
-import { Pay, ConfirmPay } from 'src/validations/schemas/payment';
+import { UsersRepository } from '../repository/users.repository';
+import { PaymentRepository } from '../repository/payment.repository';
+import { SessionRepository } from '../repository/session.repository';
+import { Pay, ConfirmPay } from '../validations/schemas/payment';
 import { PaymentStatus } from '@prisma/client';
-import { MailService } from 'src/lib/main.service';
+import { MailService } from '../lib/main.service';
 
 @Injectable()
 export class PaymentService {

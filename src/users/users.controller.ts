@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body, UsePipes } from '@nestjs/common';
 import { Prisma, User } from '@prisma/client';
 import { UsersService } from './users.service';
-import { createUserValidation, userDocumentAndPhoneValidation, UserDocumentAndPhone, addBalanceValidations, AddBalance } from 'src/validations/schemas/users';
+import { createUserValidation, userDocumentAndPhoneValidation, UserDocumentAndPhone, addBalanceValidations, AddBalance } from '../validations/schemas/users';
 
 @Controller('users')
 export class UsersController {
