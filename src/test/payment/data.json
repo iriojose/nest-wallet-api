@@ -1,0 +1,76 @@
+{
+    "bodys":{
+        "pay":{ 
+            "email":"hola@gmail.com",
+            "amount": 5
+        },
+        "pay2":{ 
+            "email":"hola@gmail.com",
+            "amount": 15
+        },
+        "confirm": {
+            "sessionId": "ceb05315-47ba-4f6b-9026-18bfa7feac53",
+            "token":"162541"
+        }
+    },
+    "repository": {
+        "createPayment": {
+            "id": "83a8d779-1cbd-4aea-a8ff-2d3aed7c5216",
+            "amount": 5,
+            "token": "162541",
+            "sessionId": null,
+            "userId": "d1b6f6cb-ff2e-4308-9e0d-c1c79bbc12f3",
+            "status": "PENDING",
+            "createdAt": "2024-11-07T18:43:24.919Z"
+        },
+        "createSession": {
+            "id": "ceb05315-47ba-4f6b-9026-18bfa7feac53",
+            "token":"162541",
+            "paymentId": "83a8d779-1cbd-4aea-a8ff-2d3aed7c5216",
+            "createdAt": "2024-11-07T18:43:24.919Z",
+            "expiresAt": "2024-11-07T18:58:24.919Z"
+        },
+        "getSession2": {
+            "id": "ceb05315-47ba-4f6b-9026-18bfa7feac53",
+            "token":"162541",
+            "paymentId": "83a8d779-1cbd-4aea-a8ff-2d3aed7c5216",
+            "createdAt": "2024-11-07T18:43:24.919Z",
+            "expiresAt": "2024-11-07T18:58:24.919Z"
+        },
+        "getSession": {
+            "id": "ceb05315-47ba-4f6b-9026-18bfa7feac53",
+            "token":"162541",
+            "paymentId": "83a8d779-1cbd-4aea-a8ff-2d3aed7c5216",
+            "createdAt": "2024-11-07T18:43:24.919Z",
+            "expiresAt": "2024-11-07T18:58:24.919Z",
+            "payment": {
+                "id": "83a8d779-1cbd-4aea-a8ff-2d3aed7c5216",
+                "amount": 5,
+                "token": "162541",
+                "sessionId": null,
+                "userId": "d1b6f6cb-ff2e-4308-9e0d-c1c79bbc12f3",
+                "status": "PENDING",
+                "createdAt": "2024-11-07T18:43:24.919Z"
+            },
+            "user": {
+                "id": "944f1891-d8b8-476e-99fd-82fed036a430",
+                "document": "123456",
+                "firstName": "hola",
+                "lastName": "gmail",
+                "email": "hola@gmail.com",
+                "phone": "04248918821",
+                "balance": 10,
+                "createdAt": "2024-11-07T02:20:28.533Z",
+                "updatedAt": "2024-11-07T03:21:27.245Z"
+            }
+        }
+    },
+    "pay":{
+        "sessionId": "ceb05315-47ba-4f6b-9026-18bfa7feac53",
+        "token": "162541",
+        "message": "the token was sent to the email"
+    },
+    "confirm": {
+        "message": "Payment completed successfully"
+    }
+}

@@ -1,10 +1,10 @@
 import { Injectable, BadRequestException, NotFoundException } from '@nestjs/common';
-import { UsersRepository } from 'src/repository/users.repository';
-import { PaymentRepository } from 'src/repository/payment.repository';
-import { SessionRepository } from 'src/repository/session.repository';
-import { Pay, ConfirmPay } from 'src/validations/schemas/payment';
+import { UsersRepository } from '../../repository/users.repository';
+import { PaymentRepository } from '../../repository/payment.repository';
+import { SessionRepository } from '../../repository/session.repository';
+import { Pay, ConfirmPay } from '../../validations/schemas/payment';
+import { MailService } from '../../lib/mail.service';
 import { PaymentStatus } from '@prisma/client';
-import { MailService } from 'src/lib/main.service';
 
 @Injectable()
 export class PaymentService {
@@ -34,11 +34,11 @@ export class PaymentService {
 
     async confirm(data: ConfirmPay) {
         const session = await this.sessionRepository.getSession(data.sessionId)
-        
-        if (!session || session.expiresAt < new Date() || session.token !== data.token) {
+    
+        if (!session || new Date(session.expiresAt) < new Date() || session.token !== data.token) {
             throw new BadRequestException('Invalid or expired session or token');
         }
-
+        
         if (session.payment.status !== PaymentStatus.PENDING) {
             throw new BadRequestException('The payment has already been confirmed or failed');
         }

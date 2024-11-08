@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma, User } from '@prisma/client';
-import { PrismaService } from 'src/lib/prisma.service';
-import { UserDocumentAndPhone } from 'src/validations/schemas/users';
+import { PrismaService } from '../lib/prisma.service';
+import { UserDocumentAndPhone } from '../validations/schemas/users';
 
 @Injectable()
 export class UsersRepository {
@@ -9,6 +9,13 @@ export class UsersRepository {
 
     async getUsers(): Promise<Prisma.UserGetPayload<{include: { payments: true }}>[]> {
         return await this.prisma.user.findMany({
+            include: { payments: true }
+        })
+    }
+
+    async getUser(id: string):Promise<Prisma.UserGetPayload<{include: { payments: true }}>> {
+        return await this.prisma.user.findFirst({
+            where: { id },
             include: { payments: true }
         })
     }

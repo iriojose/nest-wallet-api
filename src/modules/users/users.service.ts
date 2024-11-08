@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { UsersRepository } from '../repository/users.repository';
+import { UsersRepository } from '../../repository/users.repository';
 import { Prisma, User } from '@prisma/client';
-import { AddBalance, UserDocumentAndPhone } from 'src/validations/schemas/users';
+import { AddBalance, UserDocumentAndPhone } from '../../validations/schemas/users';
 
 @Injectable()
 export class UsersService {
@@ -9,8 +9,12 @@ export class UsersService {
         private usersRepository: UsersRepository,
     ){}
 
-    async getUsers(): Promise<Promise<Prisma.UserGetPayload<{include: { payments: true }}>[]>>{
+    async getUsers(): Promise<Prisma.UserGetPayload<{include: { payments: true }}>[]>{
         return this.usersRepository.getUsers()
+    }
+
+    async getUser(id: string): Promise<Prisma.UserGetPayload<{include: { payments: true }}>>{
+        return await this.usersRepository.getUser(id)
     }
 
     async checkBalance(data :UserDocumentAndPhone): Promise<number> {
