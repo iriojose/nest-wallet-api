@@ -18,6 +18,19 @@
             "phone": "04248918821"
         }
     },
+    "repository": {
+        "getUserByEmail": {
+            "id": "944f1891-d8b8-476e-99fd-82fed036a430",
+            "document": "123456",
+            "firstName": "hola",
+            "lastName": "gmail",
+            "email": "hola@gmail.com",
+            "phone": "04248918821",
+            "balance": 10,
+            "createdAt": "2024-11-07T02:20:28.533Z",
+            "updatedAt": "2024-11-07T03:21:27.245Z"
+        }
+    },
     "createUser": {
         "id": "944f1891-d8b8-476e-99fd-82fed036a430",
         "document": "123456",

@@ -3,7 +3,7 @@ import { UsersRepository } from '../../repository/users.repository';
 import { PaymentRepository } from '../../repository/payment.repository';
 import { SessionRepository } from '../../repository/session.repository';
 import { Pay, ConfirmPay } from '../../validations/schemas/payment';
-import { MailService } from '../../lib/main.service';
+import { MailService } from '../../lib/mail.service';
 import { PaymentStatus } from '@prisma/client';
 
 @Injectable()
@@ -34,11 +34,11 @@ export class PaymentService {
 
     async confirm(data: ConfirmPay) {
         const session = await this.sessionRepository.getSession(data.sessionId)
-        
-        if (!session || session.expiresAt < new Date() || session.token !== data.token) {
+    
+        if (!session || new Date(session.expiresAt) < new Date() || session.token !== data.token) {
             throw new BadRequestException('Invalid or expired session or token');
         }
-
+        
         if (session.payment.status !== PaymentStatus.PENDING) {
             throw new BadRequestException('The payment has already been confirmed or failed');
         }
