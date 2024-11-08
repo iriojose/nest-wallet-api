@@ -9,8 +9,12 @@ export class UsersService {
         private usersRepository: UsersRepository,
     ){}
 
-    async getUsers(): Promise<Promise<Prisma.UserGetPayload<{include: { payments: true }}>[]>>{
+    async getUsers(): Promise<Prisma.UserGetPayload<{include: { payments: true }}>[]>{
         return this.usersRepository.getUsers()
+    }
+
+    async getUser(id: string): Promise<Prisma.UserGetPayload<{include: { payments: true }}>>{
+        return await this.usersRepository.getUser(id)
     }
 
     async checkBalance(data :UserDocumentAndPhone): Promise<number> {

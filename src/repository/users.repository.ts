@@ -13,6 +13,13 @@ export class UsersRepository {
         })
     }
 
+    async getUser(id: string):Promise<Prisma.UserGetPayload<{include: { payments: true }}>> {
+        return await this.prisma.user.findFirst({
+            where: { id },
+            include: { payments: true }
+        })
+    }
+
     async getUserByEmail(email: string): Promise<User | null> {
         return await this.prisma.user.findFirst({
             where: { email }

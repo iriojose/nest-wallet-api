@@ -18,7 +18,8 @@ import { AppController } from './app.controller';
 				return config;
 			},
 		}),
-    	UsersModule, PaymentModule
+    	UsersModule, 
+		PaymentModule
     ],
     providers: [PrismaService],
 	controllers: [AppController]
