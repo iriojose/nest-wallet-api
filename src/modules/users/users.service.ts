@@ -14,7 +14,10 @@ export class UsersService {
     }
 
     async getUser(id: string): Promise<Prisma.UserGetPayload<{include: { payments: true }}>>{
-        return await this.usersRepository.getUser(id)
+        const user = await this.usersRepository.getUser(id)
+        if(!user) throw new NotFoundException("User not found")
+            
+        return user
     }
 
     async checkBalance(data :UserDocumentAndPhone): Promise<number> {
